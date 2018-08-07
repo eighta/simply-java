@@ -1,0 +1,26 @@
+Java Remote Method Invocation
+-----------------------------
+https://en.wikipedia.org/wiki/Java_remote_method_invocation
+
+In computing, the Java Remote Method Invocation (Java RMI) is a Java API that performs remote method invocation,
+the object-oriented equivalent of remote procedure calls (RPC), with support for direct transfer of serialized
+Java classes and distributed garbage-collection.
+
+The original implementation depends on Java Virtual Machine (JVM) class-representation mechanisms
+and it thus only supports making calls from one JVM to another. The protocol underlying this Java-only
+implementation is known as Java Remote Method Protocol (JRMP). In order to support code running in a non-JVM context,
+programmers later developed a CORBA version.
+
+Usage of the term RMI may denote solely the programming interface or may signify both the API and JRMP, IIOP,
+or another implementation, whereas the term RMI-IIOP (read: RMI over IIOP) specifically denotes the RMI interface
+delegating most of the functionality to the supporting CORBA implementation.
+
+The basic idea of Java RMI, the distributed garbage-collection (DGC) protocol, and much of the architecture
+underlying the original Sun implementation, come from the "network objects" feature of Modula-3.
+
+BOOKs
+-Java RMI (Designing & Building Distributed Applications) By William Grosso
+    Publisher: O'Reilly Media
+
+TUTORIAL
+-https://docs.oracle.com/javase/tutorial/rmi/index.html

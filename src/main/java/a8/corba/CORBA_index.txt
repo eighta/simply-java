@@ -1,0 +1,117 @@
+CORBA is an acronym for Common ORB Architecture.
+
+The phrase "common architecture" means a technical standard,
+so CORBA is simply a technical standard for something called an ORB
+
+ORB is an acronym for Object Request Broker,
+which is an object-oriented version of an older technology called
+Remote Procedure Call (RPC).
+
+An ORB or RPC is a mechanism for invoking operations on an object (or calling a procedure)
+in a different (“remote”) process that may be running on the same, or a different, computer.
+At a programming level, these “remote” calls look similar to “local” calls.
+
+Many people refer to CORBA as middleware or integration software.
+This is because CORBA is often used to get existing, stand-alone applications communicating with each other.
+
+A tag-line used by IONA Technologies, Making Software Work Together™, sums up the purpose of CORBA.
+Of course, CORBA is not the only middleware technology in existence.
+
+Some other brand names of middleware include
+    Java Remote Method Invocation (RMI),
+    IBM MQ Series,
+    Microsoft’s COM and .NET,
+    SOAP,
+    and TIBCO Rendezvous.
+
+Scripting languages—such as UNIX shells, Perl, Python and Tcl
+can also be classified as middleware because scripts are often used to
+connect programs together. A famous example of this is the “pipe” operator
+in UNIX shells, as illustrated in the example below:
+
+ls -l | grep ˆd
+
+The pipe operator sends the output of the first command to the second command.
+Put simply, it helps two applications communicate with each other,
+which is what middleware is all about
+
+One of CORBA’s strong points is that it is distributed middleware.
+In particular, it allows applications to talk to each other even if the applications are:
+
+    • On different computers, for example, across a network.
+
+    • On different operating systems. CORBA products are available for many
+        operating systems, including Windows, UNIX, IBM mainframes and
+        embedded systems.
+
+    • On different CPU types, for example, Intel, SPARC, PowerPC, bigendian
+        or little-endian, and different word sizes, for example, 32-bit and 64-bit CPUs.
+
+    • Implemented with different programming languages, such as, C, C++,
+        Java, Smalltalk, Ada, COBOL, PL/I, LISP, Python and IDLScript1
+
+CORBA is also an object-oriented, distributed middleware.
+This means that a client does not make calls to a server process.
+Instead, a CORBA client makes calls to objects (which happen to live in a server process)
+
+Client and Server
+In some computer technologies, the terms client and server have a strict meaning
+and an application is either one or the other. CORBA is not so strict.
+In CORBA terminology, a server is a process that contains objects, and a client
+is a process that makes calls to objects. A CORBA application can be both a
+client and a server at the same time.
+
+Interface Definition Language (IDL)
+-----------------------------------
+An IDL file defines the public application programming interface (API)
+that is exposed by objects in a server application.
+
+The type of a CORBA object is called an interface,
+which is similar in concept to a C++ class or a Java interface.
+
+IDL interfaces support multiple inheritance.
+An example IDL file is shown in Figure 1.1. An IDL interface may
+contain operations and attributes. Many people mistakingly assume that an
+attribute is similar in concept to an instance variable in C++ (a field in
+Java). This is wrong. An attribute is simply syntactic sugar for a pair of
+get- and set-style operations. An attribute can be readonly, in which
+case it maps to just a get-style operation.
+
+The parameters of an operation have a specified direction, which can be:
+in (meaning that the parameter is passed from the client to the server),
+out (the parameter is passed from the server back to the client) or
+inout (the parameter is passed in both directions).
+
+Operations can also have a return value.
+An operation can raise (throw) an exception if something goes wrong.
+There are over 30 predefined exception types, called system exceptions, that all operations can throw,
+although in practice system exceptions are raised by the CORBA runtime system much more frequently than by application code.
+In addition to the pre-defined system exceptions, new exception types can be defined in an IDL file.
+These are called user-defined exceptions. A raises clause on the signature of an operation specifies the user-defined exceptions
+that it might throw.
+
+Parameters to an operation (and the return value) can be one of the built-in
+types—for example, string, boolean or long—or a “user-defined” type
+that is declared in an IDL file. User-defined types can be any of the following:
+
+    • A struct. This is similar to a C/C++ struct or a Java class that
+        contains only public fields.
+
+    • A sequence. This is a collection type. It is like a one-dimensional
+        array that can grow or shrink.
+
+    • An array. The dimensions of an IDL array are specified in the IDL file,
+        so an array is of fixed size, that is, it cannot grow or shrink at runtime.
+        Arrays are rarely used in IDL. The sequence type is more flexible and
+        so is more commonly used.
+
+    • A typedef. This defines a new name for an existing type. For example,
+        the statement below defines age that is represented as a short:
+        typedef short age;
+
+    By default, sequences and arrays are anonymous types, that is, they
+    do not have a name. A common, and very important, use of typedef
+    is to associate a name with a sequence or array declaration.
+    An example of this can be seen in the definition of StringSeq in Figure 1.1.
+
+    • A union. This type can hold one of several values at runtime, for example:
