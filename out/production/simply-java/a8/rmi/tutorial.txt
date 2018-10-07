@@ -1,0 +1,42 @@
+An Overview of RMI Applications
+
+RMI applications often comprise two separate programs, a server and a client.
+A typical server program creates some remote objects, makes references to these objects accessible,
+and waits for clients to invoke methods on these objects. A typical client program obtains a remote reference
+to one or more remote objects on a server and then invokes methods on them. RMI provides the mechanism
+by which the server and the client communicate and pass information back and forth.
+Such an application is sometimes referred to as a distributed object application.
+
+Distributed object applications need to do the following:
+
+-Locate remote objects. Applications can use various mechanisms to obtain references to remote objects.
+For example, an application can register its remote objects with RMI's simple naming facility, the RMI registry.
+Alternatively, an application can pass and return remote object references as part of other remote invocations.
+
+-Communicate with remote objects. Details of communication between remote objects are handled by RMI. To the programmer,
+remote communication looks similar to regular Java method invocations.
+
+-Load class definitions for objects that are passed around. Because RMI enables objects to be passed back and forth,
+it provides mechanisms for loading an object's class definitions as well as for transmitting an object's data.
+
+***Advantages of Dynamic Code Loading
+One of the central and unique features of RMI is its ability to download the definition of an object's class if the class
+is not defined in the receiver's Java virtual machine. All of the types and behavior of an object, previously available
+only in a single Java virtual machine, can be transmitted to another, possibly remote, Java virtual machine.
+RMI passes objects by their actual classes, so the behavior of the objects is not changed when they are sent to another
+Java virtual machine. This capability enables new types and behaviors to be introduced into a remote Java virtual machine,
+thus dynamically extending the behavior of an application. The compute engine example in this trail uses this capability
+to introduce new behavior to a distributed program.
+
+***Remote Interfaces, Objects, and Methods
+Like any other Java application, a distributed application built by using Java RMI is made up of interfaces and classes. The interfaces declare methods. The classes implement the methods declared in the interfaces and, perhaps, declare additional methods as well. In a distributed application, some implementations might reside in some Java virtual machines but not others. Objects with methods that can be invoked across Java virtual machines are called remote objects.
+
+An object becomes remote by implementing a remote interface, which has the following characteristics:
+-A remote interface extends the interface java.rmi.Remote.
+-Each method of the interface declares java.rmi.RemoteException in its throws clause, in addition to any
+    application-specific exceptions.
+
+RMI treats a remote object differently from a non-remote object when the object is passed from one Java virtual machine to another Java virtual machine. Rather than making a copy of the implementation object in the receiving Java virtual machine, RMI passes a remote stub for a remote object. The stub acts as the local representative, or proxy, for the remote object and basically is, to the client, the remote reference. The client invokes a method on the local stub, which is responsible for carrying out the method invocation on the remote object.
+
+A stub for a remote object implements the same set of remote interfaces that the remote object implements. This property enables a stub to be cast to any of the interfaces that the remote object implements. However, only those methods defined in a remote interface are available to be called from the receiving Java virtual machine.
+

@@ -1,0 +1,25 @@
+Java Authorization Contract for Containers
+
+The Java Authorization Contract for Containers (JACC) specification defines a contract between a Java EE application server
+and an authorization policy provider. All Java EE containers support this contract.
+
+The JACC specification defines java.security.Permission classes that satisfy the Java EE authorization model.
+The specification defines the binding of container access decisions to operations on instances of these permission classes.
+It defines the semantics of policy providers that use the new permission classes to address the authorization requirements
+of the Java EE platform, including the definition and use of roles.
+
+Java Authentication Service Provider Interface for Containers
+
+The Java Authentication Service Provider Interface for Containers (JASPIC) specification defines
+a service provider interface (SPI) by which authentication providers that implement message authentication mechanisms
+may be integrated in client or server message-processing containers or runtimes.
+
+Authentication providers integrated through this interface operate on network messages provided to them
+by their calling container. The authentication providers transform outgoing messages so that the source of the message
+can be authenticated by the receiving container, and the recipient of the message can be authenticated by the message sender.
+
+Authentication providers authenticate incoming messages and return to their calling container the identity established
+as a result of the message authentication.
+
+JASPIC is new to the Java EE 6 platform.
+

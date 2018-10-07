@@ -1,0 +1,12 @@
+Java Interface Definition Language (IDL)
+https://en.wikipedia.org/wiki/Java_Interface_Definition_Language
+
+In software development, Java Interface Definition Language, or Java IDL,
+is an implementation of the CORBA specification and enables interoperability and
+connectivity with heterogeneous objects. It is basically an Object Request Broker provided with JDK.
+The Java IDL enables distributed Web applications to transparently invoke operations on remote network services
+using the industry standards interface description language (IDL) and IIOP from Object Management Group.
+
+TUTORIAL
+========
+https://docs.oracle.com/javase/8/docs/technotes/guides/idl/GShome.html
